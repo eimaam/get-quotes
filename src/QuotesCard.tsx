@@ -1,25 +1,40 @@
-import React, {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { quotables } from './quotes'
 
 import arrow from "../src/assets/arrow.png"
+import axios from 'axios'
 
 export const QuotesCard = () => {
   const random = Math.floor(Math.random() * (20-1) - 1)
 
-  const [quote, setQuote] = useState(quotables[random])
+  const [quote, setQuote] = useState({
+    quote: "",
+    author: ""
+  })
+
+    useEffect(() => {
+          function getQuote(){
+          axios.get('https://free-quotes-api.herokuapp.com/')
+        .then(response => {
+          setQuote(prevState => ({
+            ...prevState,
+            quote: response.data.quote,
+            author: response.data.author
+          }))
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
+      getQuote()
+    }, [])
 
 
-    // const quotations = quotables.map(item => {
-    //     setQuote(item[random])
-    // })
-
-    
-    // setQuote(quotables[random])
 
     
   return (
     <div className='m-auto flex flex-col gap-4'>
-      <div className='relative bg-gray-200 w-4/4 sm:w-72 rounded-tr-lg rounded-bl-lg m-auto p-4 text-justify shadow-2xl'>
+      <div className='relative bg-gray-200 w-4/4 sm:w-72 rounded-tr-lg rounded-bl-lg m-auto p-3 text-justify shadow-2xl'>
         <h1 className='absolute -left-5 -top-6 text-8xl font-fredoka'>“</h1>
         <div className='my-2'>
           <p className='text-xl font-space italic px-3'>{quote.quote}”</p>
