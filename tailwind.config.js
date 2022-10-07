@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      fredoka: "'Fredoka\\ One', cursive",
-      pt: "'PT\\ Mono', 'monospace'",
-      space: "'Space\\ Mono', monospace"
+      fredoka: ["'Fredoka\\ One', 'cursive' !important"],
+      pt: ["'PT\\ Mono', monospace !important"],
+      space: ["'Space\\ Mono', 'monospace' !important"]
     },
     width: {
       '72': '28rem'

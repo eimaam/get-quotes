@@ -52,7 +52,7 @@ export const QuotesCard = () => {
         <h1 className='absolute -left-5 -top-6 text-8xl font-fredoka'>“</h1>
         {loading 
         ? 
-        <div className='border-6 text-center h-32 flex m-auto justify-center items-center'>
+        <div className='h-32  flex m-auto justify-center items-center'>
           <BeatLoader size={20} />
         </div>
          : 
@@ -61,12 +61,14 @@ export const QuotesCard = () => {
           <h3 className='text-right text-lg font-bold my-3 px-2 tracking-wider'>- {quote.author}</h3>
         </div>
         }
-        <button onClick={nextQuote} className='z-10 absolute right-2 bg-green-400 hover:bg-blue-200 hover:text-black text-white text-lg font-bold py-2 px-4 rounded-tr-large rounded-bl-large'>GET QUOTE</button>
+        {!loading && <button onClick={nextQuote} className='z-10 absolute right-2 bg-green-400 hover:bg-blue-200 hover:text-black text-white text-lg font-bold py-2 px-4 rounded-tr-large rounded-bl-large'>GET QUOTE</button>}
       </div>
+      {!loading &&
       <div className='flex-col w-20 ml-auto'>
         <img src={arrow} alt="spring arrow" className='h-20 m-auto'/>
         <p className='font-pt italic text-white'>Click to generate <br /> new quote...</p>
       </div>
+      }
     </div>
     // <div className='m-auto flex flex-col border'>
     //   <div className='relative w-4/4 sm:w-72 bg-cyan-300 rounded-tr-lg rounded-bl-lg border m-auto p-4 text-justify'>
