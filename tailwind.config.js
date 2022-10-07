@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      fredoka: ["'Fredoka\\ One', 'cursive' !important"],
-      pt: ["'PT\\ Mono', monospace !important"],
-      space: ["'Space\\ Mono', 'monospace' !important"]
+      fredoka: "'Fredoka\\ One', 'cursive'",
+      pt: "'PT\\ Mono', 'monospace'",
+      space: "'Space\\ Mono', 'monospace'"
     },
     width: {
       '72': '28rem'
@@ -22,6 +22,7 @@ module.exports = {
       'lg': '20%',
       'full': '9999px',
       'large': '55%',
+      'half': '50%',
     }
     
   },

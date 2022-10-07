@@ -7,4 +7,11 @@
         @apply 
         font-space
     }
+    .share--icon{
+        @apply
+        rounded-full
+    }
+    .rotateXX{
+        transform:rotate(180deg);
+    }
 }
