@@ -3,44 +3,65 @@ import { quotables } from './quotes'
 
 import arrow from "../src/assets/arrow.png"
 import axios from 'axios'
+import { BeatLoader } from 'react-spinners'
 
 export const QuotesCard = () => {
   const random = Math.floor(Math.random() * (20-1) - 1)
 
   const [quote, setQuote] = useState({
-    quote: "",
-    author: ""
+    quote: "GET QUOTES",
+    author: "getQuotes"
   })
 
+  const [loading, setLoading] = useState(true)
+
+  function getQuote(){
+    setLoading(true)
+  axios.get('https://free-quotes-api.herokuapp.com/')
+.then(response => {
+  if(response.data.author == ""){
+    response.data.author = "UNKNOWN"
+  }else{
+    setQuote(prevState => ({
+      ...prevState,
+      quote: response.data.quote,
+      author: response.data.author
+    }))
+  }
+  setLoading(false) 
+})
+.catch((error) => {
+  console.error(error);
+});
+}
     useEffect(() => {
-          function getQuote(){
-          axios.get('https://free-quotes-api.herokuapp.com/')
-        .then(response => {
-          setQuote(prevState => ({
-            ...prevState,
-            quote: response.data.quote,
-            author: response.data.author
-          }))
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      }
       getQuote()
     }, [])
+
+    const nextQuote = () => {
+      return getQuote()
+    }
+    
 
 
 
     
   return (
     <div className='m-auto flex flex-col gap-4'>
-      <div className='relative bg-gray-200 w-4/4 sm:w-72 rounded-tr-lg rounded-bl-lg m-auto p-3 text-justify shadow-2xl'>
+      <div className='relative bg-gray-200 min-w-full w-4/4 sm:w-72 rounded-tr-lg rounded-bl-lg m-auto p-3 text-justify shadow-2xl'>
         <h1 className='absolute -left-5 -top-6 text-8xl font-fredoka'>“</h1>
-        <div className='my-2'>
+        {loading 
+        ? 
+        <div className='text-center'>
+          <BeatLoader size={20}/>
+        </div>
+         : 
+         <div className='my-2 '>
           <p className='text-xl font-space italic px-3'>{quote.quote}”</p>
           <h3 className='text-right text-lg font-bold my-3 px-2 tracking-wider'>- {quote.author}</h3>
         </div>
-        <button className='z-10 absolute right-2 bg-green-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-tr-large rounded-bl-large'>GET QUOTE</button>
+        }
+        <button onClick={nextQuote} className='z-10 absolute right-2 bg-green-400 hover:bg-blue-200 hover:text-black text-white text-lg font-bold py-2 px-4 rounded-tr-large rounded-bl-large'>GET QUOTE</button>
       </div>
       <div className='flex-col w-20 ml-auto'>
         <img src={arrow} alt="spring arrow" className='h-20 m-auto'/>

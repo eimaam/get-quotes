@@ -18,7 +18,7 @@ export const Time = () => {
 
   return (
     <div className='flex flex-col gap-2 md:gap-6 w-screen text-center'>
-            <h1 className='font-space text-3xl'>{date}</h1>
+            <h1 className='font-space font-bold text-3xl'>{date}</h1>
             <h2 className='font-space text-3xl md:text-6xl font-bold'>
                 {`${hour}:${mins}${period}`}
             </h2>
