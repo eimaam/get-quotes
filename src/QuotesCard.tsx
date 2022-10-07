@@ -52,8 +52,8 @@ export const QuotesCard = () => {
         <h1 className='absolute -left-5 -top-6 text-8xl font-fredoka'>“</h1>
         {loading 
         ? 
-        <div className='text-center'>
-          <BeatLoader size={20}/>
+        <div className='border-6 text-center h-32 flex m-auto justify-center items-center'>
+          <BeatLoader size={20} />
         </div>
          : 
          <div className='my-2 '>
