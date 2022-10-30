@@ -34,7 +34,9 @@ export const QuotesCard = () => {
     const err = error as AxiosError
     console.log(err.response?.data)  
   }
-    useEffect(() => {
+}
+    
+  useEffect(() => {
       getQuote()
     }, [])
 
