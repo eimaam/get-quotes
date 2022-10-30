@@ -8,7 +8,7 @@ import axios from 'axios'
 import { BeatLoader } from 'react-spinners'
 
 export const QuotesCard = () => {
-  const random = Math.floor(Math.random() * (20-1) - 1)
+  const random = Math.floor(Math.random() * (1643-1) - 1)
 
   const [quote, setQuote] = useState({
     quote: "GET QUOTES",
@@ -19,15 +19,16 @@ export const QuotesCard = () => {
 
   function getQuote(){
     setLoading(true)
-  axios.get('https://free-quotes-api.herokuapp.com/')
+  axios.get('https://type.fit/api/quotes/')
 .then(response => {
   if(response.data.author == ""){
     response.data.author = "UNKNOWN"
   }else{
+    // console.log(response.data[199])
     setQuote(prevState => ({
       ...prevState,
-      quote: response.data.quote,
-      author: response.data.author
+      quote: response.data[random].text,
+      author: response.data[random].authorg
     }))
   }
   setLoading(false) 
@@ -44,7 +45,7 @@ export const QuotesCard = () => {
       return getQuote()
     }
     
-
+    
 
 const tweet = `https://twitter.com/intent/tweet?text=“${quote.quote}%20-%20${quote.author}%20(Quote%20from%20www.getquotes.eimaam.dev)`
 const WhatsappShare = `whatsapp://send?text=“${quote.quote}%20-%20${quote.author}%20(Quote%20from%20www.getquotes.eimaam.dev)`
