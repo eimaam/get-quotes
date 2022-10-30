@@ -4,7 +4,7 @@ import { quotables } from './quotes'
 import arrow from "../src/assets/arrow.png"
 import twitter from "../src/assets/twitter-svgrepo-com.svg"
 import whatsapp from "../src/assets/whatsapp-svgrepo-com.svg"
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { BeatLoader } from 'react-spinners'
 
 export const QuotesCard = () => {
@@ -17,26 +17,23 @@ export const QuotesCard = () => {
 
   const [loading, setLoading] = useState(true)
 
-  function getQuote(){
+  const getQuote = async () => {
     setLoading(true)
-  axios.get('https://type.fit/api/quotes/')
-.then(response => {
-  if(response.data.author == ""){
-    response.data.author = "UNKNOWN"
-  }else{
-    // console.log(response.data[199])
+  const data:any = await axios.get('https://type.fit/api/quotes/')
+  if(data){
+    setLoading(false)
+  }
+  try{
     setQuote(prevState => ({
       ...prevState,
-      quote: response.data[random].text,
-      author: response.data[random].authorg
+      quote: data.data[random].text,
+      author: data.data[random].author
     }))
   }
-  setLoading(false) 
-})
-.catch((error) => {
-  console.error(error);
-});
-}
+  catch(error){
+    const err = error as AxiosError
+    console.log(err.response?.data)  
+  }
     useEffect(() => {
       getQuote()
     }, [])
