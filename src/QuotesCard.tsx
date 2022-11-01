@@ -46,8 +46,8 @@ export const QuotesCard = () => {
     
     
 
-const tweet = `https://twitter.com/intent/tweet?text=“${quote.quote}%20-%20${quote.author}%20(Quote%20from%20www.getquotes.eimaam.dev)`
-const WhatsappShare = `whatsapp://send?text=“${quote.quote}%20-%20${quote.author}%20(Quote%20from%20www.getquotes.eimaam.dev)`
+const tweet = `https://twitter.com/intent/tweet?text=“${quote.quote}”%20-%20${quote.author}%0A(Quote%20from%20www.getquotes.eimaam.dev)`
+const WhatsappShare = `whatsapp://send?text=“${quote.quote}”%20-%20${quote.author}%0A(Quote%20from%20www.getquotes.eimaam.dev)`
     
   return (
     <div className='m-auto h-auto flex flex-col gap-4'>
@@ -62,8 +62,12 @@ const WhatsappShare = `whatsapp://send?text=“${quote.quote}%20-%20${quote.auth
         </div>
          : 
          <div className='my-2 '>
-          <p className='text-xl font-space italic px-3 '>{quote.quote}”</p>
-          <h3 className='text-right text-lg font-bold my-3 mb-8 px-2 tracking-wider'>- {quote.author}</h3>
+          <p className='text-xl font-space italic px-3 '>
+            {quote.quote}”
+          </p>
+          <h3 className='text-right text-lg font-bold my-3 mb-8 px-2 tracking-wider'>
+            - {quote.author}
+          </h3>
         </div>
         }
         {!loading && 
