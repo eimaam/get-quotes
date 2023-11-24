@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { PT_Mono } from 'next/font/google'
 import './globals.css'
-import { Suspense } from 'react'
-import Loader from '@/loading'
 
 const pt_mono = PT_Mono({ weight: "400", subsets: ['latin']})
 
@@ -18,9 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <Suspense fallback={<Loader />}> */}
       <body className={pt_mono.className}>{children}</body>
-      {/* </Suspense> */}
     </html>
   )
 }
