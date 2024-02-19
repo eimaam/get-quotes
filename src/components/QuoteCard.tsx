@@ -18,7 +18,7 @@ export interface Quote {
 export async function getQuote() {
   try {
     const res = await fetch(
-      "https://api-get-quotes.vercel.app/api/v1/getquotes/random",
+      "https://api-get-quotes.vercel.app/api/v1/random",
       { method: "GET", next: { revalidate: 0 } }
     );
 
